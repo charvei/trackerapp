@@ -1,0 +1,5 @@
+node_modules/
+out/
+.expo/
+db.json
+db_copy.json
