@@ -1,12 +1,12 @@
 # syntax=docker/dockerfile:1
 FROM node:12-alpine
+WORKDIR /usr/goal
 
-WORKDIR /app
-
-COPY . .
-
+COPY package.json .
 RUN npm install
 
+COPY . .
+RUN npx tsc
 CMD ["node", "out/src/app/app.js"]
 
-EXPOSE 3000
+EXPOSE 3072

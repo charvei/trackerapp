@@ -32,7 +32,7 @@ class InMemoryPersistanceStrategy {
     }
 
     _read_json_store(): any {
-        let data: any = JSON.parse(fs.readFileSync('db.json', 'utf-8'))
+        let data: any = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'))
         if (!data.hasOwnProperty(this.entity_name)) {
             data[this.entity_name] = {}
         }

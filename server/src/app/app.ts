@@ -1,4 +1,6 @@
 import express from "express"
+import { address } from "ip"
+
 import { ActivityEventService } from "../service/activity_event_service"
 import { ActivityService } from "../service/activity_service"
 import { SurveyResponseService } from "../service/survey_response_service"
@@ -8,7 +10,8 @@ const app = express()
 
 app.use(express.json())
 
-const port = 3000
+const port = 3072
+const ipAddress = address()
 
 app.get("/", function (req, res) {
     res.send("Hello World! :)")
@@ -93,12 +96,6 @@ app.get(activityEventsPath, function (req, res) {
     res.send(new ActivityEventService().list())
 })
 
-// Listen
-app.listen(port, () => {
-    console.log(`Example app listening at localhost:${port}`)
+app.listen(port, ipAddress, () => {
+    console.log(`Example app listening at http://${ipAddress}:${port}`)
 })
-
-// app.listen(port, '192.168.0.16', () => {
-//     console.log(`Example app listening at http://192.168.0.16:${port}`)
-// })
-

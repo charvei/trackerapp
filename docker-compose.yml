@@ -1,0 +1,9 @@
+---
+version: "0.1"
+services:
+  goal-server:
+    build: ./server
+    ports: 
+      - 3072:3072
+    volumes:
+      - /var/lib/goal/db:/usr/goal/db
