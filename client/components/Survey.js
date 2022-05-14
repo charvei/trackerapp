@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { Formik, Field } from 'formik'
 
-import * as SurveyClient from '../api_client/SurveyClient'
+import * as SurveyClient from '../backend_client/SurveyClient'
 import RadioSelectFormItem from './RadioSelectFormItem';
 
 

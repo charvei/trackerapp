@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 
-import * as ActivityClient from '../api_client/ActivityClient'
+import * as ActivityClient from '../backend_client/ActivityClient'
 
 
 export default function ActivityScreen({ navigation }) {

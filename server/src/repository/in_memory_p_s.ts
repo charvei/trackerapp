@@ -1,6 +1,8 @@
 import * as fs from 'fs'
 import { BaseDomainEntity } from '../domain/base'
 
+const dbFileLocation = "db/db.json"
+
 class InMemoryPersistanceStrategy {
     entity_name: string
     data: any
@@ -28,11 +30,11 @@ class InMemoryPersistanceStrategy {
     }
     
     commit(): void {
-        fs.writeFileSync('db.json', JSON.stringify(this.data))
+        fs.writeFileSync(dbFileLocation, JSON.stringify(this.data))
     }
 
     _read_json_store(): any {
-        let data: any = JSON.parse(fs.readFileSync('db/db.json', 'utf-8'))
+        let data: any = JSON.parse(fs.readFileSync(dbFileLocation, 'utf-8'))
         if (!data.hasOwnProperty(this.entity_name)) {
             data[this.entity_name] = {}
         }
