@@ -6,15 +6,17 @@ import { BaseDomainEntity } from './base';
 
 class ActivityEvent extends BaseDomainEntity {
     activityId: string
-    timePerformed: string
+    startedAt: string
+    finishedAt: string
     // timeStarted
     // duration // minutes
     // comments? e.g. for 'life event activity where what it is is ambiguous, in the record you can comment: 'moved interstate'
 
-    constructor(activityId: string, timePerformed: string, id?: string) {
+    constructor(activityId: string, startedAt: string, finishedAt: string, id?: string) {
         super(id)
         this.activityId = activityId
-        this.timePerformed = timePerformed
+        this.startedAt = startedAt
+        this.finishedAt = finishedAt
     }
 }
 

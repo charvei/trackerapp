@@ -7,3 +7,4 @@ services:
       - 3072:3072
     volumes:
       - /var/lib/goal/db:/usr/goal/db
+    restart: unless-stopped

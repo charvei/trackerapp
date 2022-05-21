@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-surveyEndpointIp = "http://192.168.0.7"
+surveyEndpointIp = "http://192.168.0.16"
 surveyEndpointPort = "3072" 
 
 const client = axios.create({

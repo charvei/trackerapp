@@ -4,13 +4,14 @@ import { ActivityEvent } from '../domain/activity_event'
 
 interface ActivityEventData {
     activityId: string
-    timePerformed: string
+    startedAt: string
+    finishedAt: string,
 }
 
 class ActivityEventService extends BaseService {
 
     create(data: ActivityEventData) {
-        const activityEvent = new ActivityEvent(data.activityId, data.timePerformed)
+        const activityEvent = new ActivityEvent(data.activityId, data.startedAt, data.finishedAt)
         this.repo.add(activityEvent)
         this.repo.commit()
         return activityEvent

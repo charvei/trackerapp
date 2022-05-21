@@ -19,7 +19,6 @@ export default function RadioSelectFormItem({field, form, ...props}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#bcc',
   },
   label: {
     fontWeight: 'bold',

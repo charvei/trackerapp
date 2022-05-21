@@ -11,7 +11,7 @@ const app = express()
 app.use(express.json())
 
 const port = 3072
-const ipAddress = address()
+const ipAddress = address("Ethernet")
 
 app.get("/", function (req, res) {
     res.send("Hello World! :)")
@@ -81,6 +81,7 @@ app.get(activitiesPath, function (req, res) {
 const activityEventsPath = "/activity_events"
 
 app.post(activityEventsPath, function (req, res) {
+    console.log("recieved post activ_ty event")
     res.send(new ActivityEventService().create(req.body))
 })
 

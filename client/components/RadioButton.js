@@ -35,14 +35,14 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   inactiveRadioButton: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      padding: 16,
-      marginLeft: 8,
-      marginRight: 8,
-      marginBottom: 4,
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    padding: 16,
+    marginLeft: 8,
+    marginRight: 8,
+    marginBottom: 4,
 
-      borderRadius: 8
+    borderRadius: 8,
   }
 });

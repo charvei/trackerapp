@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, ActivityIndicator } from 'react-native';
 import { Formik, Field } from 'formik'
 
 import * as SurveyClient from '../backend_client/SurveyClient'
@@ -51,29 +51,37 @@ export default function SurveyForm() {
     console.log(formValues)
 
     return (
-      <Formik
-        initialValues={formValues}
-        onSubmit={(values, { resetForm }) => {
-          sendSurveyResponses(values)
-          resetForm()
-        }}
-      >
-        {({handleSubmit, resetForm, values}) => (
-        <View style={styles.container}>
-          <Text style={styles.title}>{surveyData.name}</Text>
-          {surveyData.items.map((surveyItem) =>
-            <Field name={surveyItem.id} component={RadioSelectFormItem} data={surveyItem} values={values} key={surveyItem.id}></Field>)}
-          <Button onPress={handleSubmit} title="Submit"/>
-        </View>)}
-      </Formik>
+      <ScrollView>
+        <Formik
+          initialValues={formValues}
+          onSubmit={(values, { resetForm }) => {
+            sendSurveyResponses(values)
+            resetForm()
+          }}
+        >
+          {({handleSubmit, resetForm, values}) => (
+          <View style={styles.container}>
+            {console.log("values->")}
+            {console.log(values)}
+            <Text style={styles.title}>{surveyData.name}</Text>
+            {surveyData.items.map((surveyItem) =>
+              <Field name={surveyItem.id} component={RadioSelectFormItem} data={surveyItem} values={values} key={surveyItem.id}></Field>)
+            }
+            <Button onPress={handleSubmit} title="Submit"/>
+          </View>)}
+        </Formik>
+      </ScrollView>
     )
 
   }
 
   if (error) {
-    return <Text>{error}</Text>
+    return <View style={styles.container}><Text>{error}</Text></View>
   } else if (!isLoaded) {
-    return <Text>Loading survey form!</Text>
+    return (
+    <View style={styles.loadingMessage}>
+      <ActivityIndicator color="#000" size="large"></ActivityIndicator>
+    </View>)
   } else {
     if (!submitted) {
       return buildForm()
@@ -90,7 +98,10 @@ const styles = StyleSheet.create({
     padding: 8,
     color: '#000'
   },
-  container: {
+  loadingMessage: {
     padding: 4,
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center'
   }
 });
