@@ -17,14 +17,25 @@ function postActivities(data) {
     return client.post('/activities', data)
 }
 
+function deleteActivities(id) {
+    return client.delete(`/activities/${id}`)
+}
 
 /** ACTIVITY EVENTS */
+function getActivityEvents(activityId) {
+    const activityIdQuery = activityId ? `?activityId=${activityId}` : ""
+    console.log(`--> query: ${activityIdQuery}`)
+    return client.get(`/activity_events${activityIdQuery}`)
+}
+
 function postActivityEvents(data) {
     return client.post('/activity_events', data)
 }
 
 export {
+    deleteActivities,
     getActivities,
     postActivities,
+    getActivityEvents,
     postActivityEvents
 }

@@ -93,8 +93,19 @@ app.get(`${activityEventsPath}/:id`, function (req, res) {
     res.send(new ActivityEventService().get(req.params.id))
 })
 
+// app.get(activityEventsPath, function (req, res) {
+//     res.send(new ActivityEventService().list())
+// })
+
 app.get(activityEventsPath, function (req, res) {
-    res.send(new ActivityEventService().list())
+    console.log(req.query)
+    if (req.query.activityId) {
+        const activityIdQuery = req.query.activityId?.toString()
+        res.send(new ActivityEventService().list(activityIdQuery))        
+    } else {
+        // no activityId query param
+        res.send(new ActivityEventService().list())
+    }
 })
 
 app.listen(port, ipAddress, () => {

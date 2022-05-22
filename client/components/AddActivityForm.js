@@ -16,7 +16,7 @@ export default function AddActivityForm(props) {
     const postActivity = (values) => {
         const data = {
             "name": values.activityName,
-            "intervention_tags": values.tags
+            "tags": [values.tags]
         }
         ActivityClient.postActivities(data)
     }

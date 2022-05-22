@@ -28,6 +28,14 @@ class InMemoryPersistanceStrategy {
     list(): any[] {
         return Object.values(this.data[this.entity_name])
     }
+
+    // list(filterFn?: (filter_properties: object) => any[]): any[] {
+    //     let results: any[] = Object.values(this.data[this.entity_name])
+    //     if (filterFn) {
+    //         results = results.filter(filterFn)
+    //     }
+    //     return results
+    // }
     
     commit(): void {
         fs.writeFileSync(dbFileLocation, JSON.stringify(this.data))

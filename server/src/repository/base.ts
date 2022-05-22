@@ -5,7 +5,7 @@ interface IRepository {
     add(entity: BaseDomainEntity): BaseDomainEntity
     delete(id: string): void
     get(id: string): BaseDomainEntity
-    list(): BaseDomainEntity[]
+    list(filterFn?: (filter_properties: object) => any[]): BaseDomainEntity[]
 
     commit(): void
 }
@@ -30,8 +30,14 @@ class BaseRepository {
         return this.persistanceStrategy.get(id)
     }
 
-    list(): BaseDomainEntity[] {
-        return this.persistanceStrategy.list()
+    list(filterFn?: (element: any) => boolean): any[] {
+        let list_results: BaseDomainEntity[] = this.persistanceStrategy.list()
+        if (filterFn) {
+            list_results = list_results.filter(element => {
+                return filterFn(element)
+            })
+        }
+        return list_results
     }
 
     commit(): void {
