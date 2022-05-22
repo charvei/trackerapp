@@ -11,7 +11,8 @@ const app = express()
 app.use(express.json())
 
 const port = 3072
-const ipAddress = address("Ethernet")
+// const ipAddress = address("Ethernet")    // Only in dev
+const ipAddress = address()
 
 app.get("/", function (req, res) {
     res.send("Hello World! :)")
